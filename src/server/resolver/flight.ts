@@ -17,7 +17,7 @@ export interface Flight {
 	/**
 	 * The place this flight departs from
 	 */
-	departure: {
+	origin: {
 		airport: Airport;
 	};
 

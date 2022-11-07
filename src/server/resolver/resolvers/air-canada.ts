@@ -288,7 +288,7 @@ export const airCanada: Resolver = async () => {
 			timezoneDelta: response.Response.flightInfo.destinationTimeZoneOffset,
 		},
 
-		departure: {
+		origin: {
 			airport: {
 				code: response.Response.flightInfo.departureAirportCodeIata,
 			},
