@@ -1,7 +1,5 @@
-<center>
-    <h1>flight-tracker</h1>
-    <p>[ab]use in-flight Wi-Fi portals to fetch live statistics</p>
-</center>
+<h1 align="center">flight-tracker</h1>
+<p align="center">[ab]use in-flight Wi-Fi portals to fetch live statistics</p>
 
 ![Screenshot of the dashboard](./doc/screenshot.png)
 
