@@ -11,193 +11,21 @@ export interface Response {
 	flightInfo: FlightInfo;
 	gogoFacts: string;
 	serviceInfo: ServiceInfo;
+	flightInfoFIG2?: FlightInfoFig2;
 	ipAddress: string;
 	macAddress: string;
 	systemInfo: SystemInfo;
-	flightInfoFIG2?: FlightInfoFIG2;
-}
-
-export interface FlightInfoFIG2 {
-	flight: {
-		id: 53151920;
-		key_time: '2022-11-07T14:40:00Z';
-		flight_state: 'IN_AIR';
-		flight_number: '861';
-		flight_identifier: 'ACA861';
-		oooi: {off: '2022-11-07T15:05:48Z'; attributes: {}};
-		gps: {
-			time: '2022-11-07T17:11:39Z';
-			latitude: 66.22802;
-			longitude: -13.00426;
-			speed: 564;
-			flight_level: 360;
-			calculations: {
-				bearing_from_departure: 341.5332598051963;
-				distance_from_departure: 963.2632216777838;
-				bearing_to_arrival: 309.8208533345177;
-				distance_to_arrival: 3181.9703040169084;
-				direct_course_distance: 4091.669508613431;
-				attributes: {};
-			};
-			attributes: {};
-			estimated: {
-				time: '2022-11-07T17:12:57.325Z';
-				latitude: 66.35890542834558;
-				longitude: -13.39469302022517;
-				speed: 564;
-				calculations: {
-					bearing_from_departure: 341.2748794921726;
-					distance_from_departure: 974.7513115068099;
-					bearing_to_arrival: 309.4628818465625;
-					distance_to_arrival: 3169.6994688434193;
-					direct_course_distance: 4091.669508613431;
-					attributes: {};
-				};
-				attributes: {};
-			};
-			course: 310;
-		};
-		time_above_service_level: {
-			first_known: '2022-11-07T15:05:48Z';
-			last_known: '2022-11-07T17:03:47Z';
-			attributes: {};
-		};
-		attributes: {};
-	};
-	aircraft: {
-		id: 6802;
-		registration_number: 'CFRSI';
-		airline_icao: {attributes: {}; owner: 'ACA'; partner: 'ACA'};
-		fleet_number: '846';
-		aircraft_type: 'B787-900';
-		seat_count: 298;
-		airlines: [
-			{
-				id: 2476;
-				name: 'Air Canada';
-				icao: 'ACA';
-				iata: 'AC';
-				currency: 'CAD';
-				locale: 'en-US';
-				call_sign: 'AIR CANADA';
-				incorporated_country: 'CA';
-				incorporated_country_name: 'Canada';
-				attributes: {};
-			},
-		];
-		connections: [
-			{
-				id: 12455;
-				aircraft_id: 6802;
-				connectivity_type: '2KU';
-				connectivity_type_last_changed: '2020-04-10T17:29:40.437Z';
-				attributes: {};
-				connectivity_installed_by_oem: true;
-			},
-		];
-		attributes: {
-			firehose_sync: 'true';
-			product: 'flight_track';
-			video_capability: 'GGV';
-			connectivity_identifier: 'CFRSI';
-			firehose_sync_lock: 'false';
-			serial_number: '37176';
-			gogo_business: 'EXTERNAL';
-			source: 'NAV';
-			official_registration: 'C-FRSI';
-			transaction_routing_id: 'C1';
-			manufacturer: 'BOE';
-			connectivity_provider: 'INST';
-			mode_s_code: 'C02EC1';
-			source_id: '24;mBKoAAJ7/0MARgBSAFMASQ==10;13182176400;';
-			class: 'LARGE_JET';
-			make: '787-900';
-			status: 'Active';
-		};
-	};
-	departure: {
-		airport: {
-			id: 16440;
-			icao: 'EGLL';
-			iata: 'LHR';
-			name: 'Heathrow';
-			mailing_address: {
-				municipality: 'London';
-				administrative_area: 'GLA';
-				administrative_area_name: 'Greater London Authority';
-				country: 'GB';
-				country_name: 'United Kingdom';
-				postal_code: 'TW6';
-				attributes: {};
-			};
-			location: {latitude: 51.4775; longitude: -0.4613888888888889; elevation: 32; attributes: {}};
-			time_zone_offset: 0;
-			attributes: {
-				product_region: 'INT';
-				marketing_municipality: 'London';
-				billing_municipality: 'London-Heathrow';
-				icao_update_time: '1525277217415';
-			};
-		};
-		time: {
-			actual: '2022-11-07T15:05:48Z';
-			estimated: '2022-11-07T15:05:48Z';
-			computed: '2022-11-07T15:05:48Z';
-			attributes: {};
-			scheduled: '2022-11-07T14:40:00Z';
-		};
-		attributes: {};
-	};
-	arrival: {
-		airport: {
-			id: 16194;
-			icao: 'CYVR';
-			iata: 'YVR';
-			name: 'Vancouver Intl';
-			mailing_address: {
-				municipality: 'Vancouver';
-				administrative_area: 'BC';
-				administrative_area_name: 'British Columbia';
-				country: 'CA';
-				country_name: 'Canada';
-				postal_code: 'V7B 0A4';
-				attributes: {};
-			};
-			location: {
-				latitude: 49.194694444444444;
-				longitude: -123.18396666666668;
-				elevation: 4;
-				attributes: {};
-			};
-			time_zone_offset: -8;
-			attributes: {
-				product_region: 'DOM';
-				marketing_municipality: 'Vancouver';
-				billing_municipality: 'Richmond';
-				icao_update_time: '1525277023028';
-			};
-		};
-		time: {
-			estimated: '2022-11-07T23:48:00Z';
-			computed: '2022-11-07T23:48:00Z';
-			attributes: {};
-			scheduled: '2022-11-07T23:22:12Z';
-		};
-		attributes: {};
-	};
-	statusCode: 200;
-	statusMessage: 'OK';
 }
 
 export interface FlightInfo {
-	logo: null;
-	airlineName: null;
+	logo: unknown;
+	airlineName: unknown;
 	airlineCode: string;
-	airlineCodeIata: null;
+	airlineCodeIata: unknown;
 	tailNumber: string;
 	flightNumberInfo: string;
-	flightNumberAlpha: null;
-	flightNumberNumeric: null;
+	flightNumberAlpha: unknown;
+	flightNumberNumeric: unknown;
 	departureAirportCode: string;
 	destinationAirportCode: string;
 	departureAirportCodeIata: string;
@@ -206,10 +34,10 @@ export interface FlightInfo {
 	destinationAirportLatitude: number;
 	departureAirportLongitude: number;
 	destinationAirportLongitude: number;
-	origin: null;
-	destination: null;
-	departureCity: null;
-	destinationCity: null;
+	origin: unknown;
+	destination: unknown;
+	departureCity: unknown;
+	destinationCity: unknown;
 	expectedArrival: string;
 	departureTime: string;
 	abpVersion: string;
@@ -218,7 +46,7 @@ export interface FlightInfo {
 	latitude: number;
 	longitude: number;
 	altitude: number;
-	localTime: null;
+	localTime: unknown;
 	utcTime: string;
 	destinationTimeZoneOffset: number;
 	hspeed: number;
@@ -230,8 +58,272 @@ export interface ServiceInfo {
 	remaining: number;
 	quality: string;
 	productCode: string;
-	alerts: null[];
+	alerts: unknown[];
 }
+
+export interface FlightInfoFig2 {
+	flight: Flight;
+	aircraft: Aircraft;
+	departure: Departure;
+	arrival: Arrival;
+	statusCode: number;
+	statusMessage: string;
+}
+
+export interface Flight {
+	id: number;
+	key_time: string;
+	flight_state: string;
+	flight_number: string;
+	flight_identifier: string;
+	oooi: Oooi;
+	gps: Gps;
+	time_above_service_level: TimeAboveServiceLevel;
+	attributes: Attributes7;
+}
+
+export interface Oooi {
+	off: string;
+	attributes: Attributes;
+}
+
+export interface Attributes {}
+
+export interface Gps {
+	time: string;
+	latitude: number;
+	longitude: number;
+	speed: number;
+	flight_level: number;
+	calculations: Calculations;
+	attributes: Attributes3;
+	estimated: Estimated;
+	course: number;
+}
+
+export interface Calculations {
+	bearing_from_departure: number;
+	distance_from_departure: number;
+	bearing_to_arrival: number;
+	distance_to_arrival: number;
+	direct_course_distance: number;
+	attributes: Attributes2;
+}
+
+export interface Attributes2 {}
+
+export interface Attributes3 {}
+
+export interface Estimated {
+	time: string;
+	latitude: number;
+	longitude: number;
+	speed: number;
+	calculations: Calculations2;
+	attributes: Attributes5;
+}
+
+export interface Calculations2 {
+	bearing_from_departure: number;
+	distance_from_departure: number;
+	bearing_to_arrival: number;
+	distance_to_arrival: number;
+	direct_course_distance: number;
+	attributes: Attributes4;
+}
+
+export interface Attributes4 {}
+
+export interface Attributes5 {}
+
+export interface TimeAboveServiceLevel {
+	first_known: string;
+	last_known: string;
+	attributes: Attributes6;
+}
+
+export interface Attributes6 {}
+
+export interface Attributes7 {}
+
+export interface Aircraft {
+	id: number;
+	registration_number: string;
+	airline_icao: AirlineIcao;
+	fleet_number: string;
+	aircraft_type: string;
+	seat_count: number;
+	airlines: Airline[];
+	connections: Connection[];
+	attributes: Attributes11;
+}
+
+export interface AirlineIcao {
+	attributes: Attributes8;
+	owner: string;
+	partner: string;
+}
+
+export interface Attributes8 {}
+
+export interface Airline {
+	id: number;
+	name: string;
+	icao: string;
+	iata: string;
+	currency: string;
+	locale: string;
+	call_sign: string;
+	incorporated_country: string;
+	incorporated_country_name: string;
+	attributes: Attributes9;
+}
+
+export interface Attributes9 {}
+
+export interface Connection {
+	id: number;
+	aircraft_id: number;
+	connectivity_type: string;
+	connectivity_type_last_changed: string;
+	attributes: Attributes10;
+	connectivity_installed_by_oem: boolean;
+}
+
+export interface Attributes10 {}
+
+export interface Attributes11 {
+	firehose_sync: string;
+	product: string;
+	video_capability: string;
+	connectivity_identifier: string;
+	firehose_sync_lock: string;
+	serial_number: string;
+	gogo_business: string;
+	source: string;
+	official_registration: string;
+	transaction_routing_id: string;
+	manufacturer: string;
+	connectivity_provider: string;
+	mode_s_code: string;
+	source_id: string;
+	class: string;
+	make: string;
+	status: string;
+}
+
+export interface Departure {
+	airport: Airport;
+	time: Time;
+	attributes: Attributes16;
+}
+
+export interface Airport {
+	id: number;
+	icao: string;
+	iata: string;
+	name: string;
+	mailing_address: MailingAddress;
+	location: Location;
+	time_zone_offset: number;
+	attributes: Attributes14;
+}
+
+export interface MailingAddress {
+	municipality: string;
+	administrative_area: string;
+	administrative_area_name: string;
+	country: string;
+	country_name: string;
+	postal_code: string;
+	attributes: Attributes12;
+}
+
+export interface Attributes12 {}
+
+export interface Location {
+	latitude: number;
+	longitude: number;
+	elevation: number;
+	attributes: Attributes13;
+}
+
+export interface Attributes13 {}
+
+export interface Attributes14 {
+	product_region: string;
+	marketing_municipality: string;
+	billing_municipality: string;
+	icao_update_time: string;
+}
+
+export interface Time {
+	actual: string;
+	estimated: string;
+	computed: string;
+	attributes: Attributes15;
+	scheduled: string;
+}
+
+export interface Attributes15 {}
+
+export interface Attributes16 {}
+
+export interface Arrival {
+	airport: Airport2;
+	time: Time2;
+	attributes: Attributes21;
+}
+
+export interface Airport2 {
+	id: number;
+	icao: string;
+	iata: string;
+	name: string;
+	mailing_address: MailingAddress2;
+	location: Location2;
+	time_zone_offset: number;
+	attributes: Attributes19;
+}
+
+export interface MailingAddress2 {
+	municipality: string;
+	administrative_area: string;
+	administrative_area_name: string;
+	country: string;
+	country_name: string;
+	postal_code: string;
+	attributes: Attributes17;
+}
+
+export interface Attributes17 {}
+
+export interface Location2 {
+	latitude: number;
+	longitude: number;
+	elevation: number;
+	attributes: Attributes18;
+}
+
+export interface Attributes18 {}
+
+export interface Attributes19 {
+	product_region: string;
+	marketing_municipality: string;
+	billing_municipality: string;
+	icao_update_time: string;
+}
+
+export interface Time2 {
+	estimated: string;
+	computed: string;
+	attributes: Attributes20;
+	scheduled: string;
+}
+
+export interface Attributes20 {}
+
+export interface Attributes21 {}
 
 export interface SystemInfo {
 	wapType: string;
@@ -280,6 +372,7 @@ export const airCanada: Resolver = async () => {
 		number: response.Response.flightInfo.flightNumberInfo,
 		completedPercent: percentageBetweenTimestamps(departureTime, expectedArrivalTime),
 		expectedArrival: response.Response.flightInfo.expectedArrival,
+		milesRemaining: response.Response.flightInfoFIG2?.flight.gps.calculations.distance_to_arrival ?? null,
 
 		destination: {
 			airport: {
@@ -306,6 +399,7 @@ export const airCanada: Resolver = async () => {
 			groundSpeed: response.Response.flightInfo.hspeed,
 			verticalSpeed: response.Response.flightInfo.vspeed,
 			altitude: response.Response.flightInfo.altitude,
+			seatCount: response.Response.flightInfoFIG2?.aircraft.seat_count ?? null,
 		},
 	};
 };

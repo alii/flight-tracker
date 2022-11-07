@@ -15,6 +15,11 @@ export interface Flight {
 	completedPercent: number;
 
 	/**
+	 * Miles remaining
+	 */
+	milesRemaining: number | null;
+
+	/**
 	 * The place this flight departs from
 	 */
 	origin: {
@@ -66,6 +71,8 @@ export interface Flight {
 		 * The altitude in feet
 		 */
 		altitude: number;
+
+		seatCount: number | null;
 	};
 }
 
