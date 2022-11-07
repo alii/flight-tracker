@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {GetServerSideProps} from 'next';
+import {GetStaticProps} from 'next';
 import useSWR from 'swr';
 import {Card} from '../components/card';
 import {Flight} from '../server/resolver/flight';
@@ -67,10 +67,11 @@ export default function FlightTracker(props: Props) {
 	);
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ctx => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
 	return {
 		props: {
 			flight: await resolveFlight(),
 		},
+		revalidate: 10,
 	};
 };
