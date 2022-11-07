@@ -359,9 +359,14 @@ export const airCanada: Resolver = async () => {
 			'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
 			'Referer': 'https://wifi.inflightinternet.com/app/ifc/gobrowse',
 		},
-		body: null,
 		method: 'GET',
 	});
+
+	if (request.status !== 200) {
+		throw new Error(
+			`Couldn't load Air Canada data. Request failed with status ${request.statusText} (${request.status})`,
+		);
+	}
 
 	const response = (await request.json()) as Root;
 
