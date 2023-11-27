@@ -4,8 +4,8 @@ import * as resolvers from './resolvers';
 
 const resolve = () => [resolvers.airCanada()];
 
-export async function resolveFlight(): Promise<Flight> {
-	return Promise.any(resolve());
+export async function resolveFlight(): Promise<Flight | null> {
+	return Promise.any(resolve()).catch(() => null);
 }
 
 export const apiHandler = api({GET: () => resolveFlight()});

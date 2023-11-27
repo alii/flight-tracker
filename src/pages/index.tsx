@@ -1,21 +1,35 @@
 import dayjs from 'dayjs';
+import relativeTimePlugin from 'dayjs/plugin/relativeTime';
 import {GetStaticProps} from 'next';
 import useSWR from 'swr';
 import {Card} from '../components/card';
 import {Flight} from '../server/resolver/flight';
 import {resolveFlight} from '../server/resolver/resolve';
-import relativeTimePlugin from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTimePlugin);
 
 interface Props {
-	flight: Flight;
+	flight: Flight | null;
 }
 
 const numberFormat = new Intl.NumberFormat();
 
 export default function FlightTracker(props: Props) {
 	const {data: flight = props.flight} = useSWR<Flight>('/api/flights/resolve');
+
+	if (!flight) {
+		return (
+			<div className="mx-4">
+				<main className="max-w-4xl mx-auto my-16 shadow-xl shadow-gray-900/5 dark:shadow-gray-100/5 border p-6 rounded-lg border-gray-200/50 bg-gray-200/20 dark:border-gray-500/20 dark:bg-gray-600/20 backdrop-blur-lg">
+					<p>You are either not on a flight, or not flying on a supported airline.</p>
+					<p className="italic text-sm opacity-60">
+						If you think this is a mistake, please submit an issue to{' '}
+						<code className="text-sm">alii/flight-tracker</code> when you land!
+					</p>
+				</main>
+			</div>
+		);
+	}
 
 	return (
 		<div className="mx-4">
