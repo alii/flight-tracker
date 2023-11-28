@@ -3,9 +3,10 @@
 
 ![Screenshot of the dashboard](./doc/screenshot.png)
 
-This project is the result of having no internet on a flight and cached node_modules. It is designed to be dynamic so it will work with multiple airlines. Below is a list of the airlines supported (will add more when I fly more OK).
+This project is the result of having no internet on a flight and cached node_modules. It is designed to be dynamic so it will work with multiple airlines. Below is a list of the airlines supported.
 
 - Air Canada
+- American Airlines
 
 ## Usage
 
