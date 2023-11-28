@@ -1,1 +1,1 @@
-export * from './air-canada';
+export * from './inflight-internet';

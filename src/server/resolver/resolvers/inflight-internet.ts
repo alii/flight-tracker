@@ -352,7 +352,7 @@ export interface SystemInfo {
 	aircraftType: string;
 }
 
-export const airCanada: Resolver = async () => {
+export const inflightInternet: Resolver = async () => {
 	const request = await fetch('https://wifi.inflightinternet.com/abp/v2/statusTray?fig2=true', {
 		headers: {
 			'accept': 'application/json, text/plain, */*',
@@ -364,7 +364,7 @@ export const airCanada: Resolver = async () => {
 
 	if (request.status !== 200) {
 		throw new Error(
-			`Couldn't load Air Canada data. Request failed with status ${request.statusText} (${request.status})`,
+			`Couldn't load InflightInternet. Request failed with status ${request.statusText} (${request.status})`,
 		);
 	}
 
