@@ -65,7 +65,7 @@ export interface Flight {
 		/**
 		 * The speed of which we are ascending or descending at in MPH
 		 */
-		verticalSpeed: number;
+		verticalSpeed: number | null;
 
 		/**
 		 * The altitude in feet
@@ -78,4 +78,5 @@ export interface Flight {
 
 export interface Airport {
 	code: string;
+	name?: string;
 }
