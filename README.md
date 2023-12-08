@@ -8,6 +8,7 @@ This project is the result of having no internet on a flight and cached node_mod
 - Air Canada
 - American Airlines
 - Iberia
+- Delta (at least intl)
 
 ## Usage
 
