@@ -353,7 +353,7 @@ export interface SystemInfo {
 }
 
 export const inflightInternet: Resolver = async () => {
-	const request = await fetch('https://wifi.inflightinternet.com/abp/v2/statusTray?fig2=true', {
+	const response = await fetch('https://wifi.inflightinternet.com/abp/v2/statusTray?fig2=true', {
 		headers: {
 			'accept': 'application/json, text/plain, */*',
 			'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
@@ -362,49 +362,51 @@ export const inflightInternet: Resolver = async () => {
 		method: 'GET',
 	});
 
-	if (request.status !== 200) {
+	if (response.status !== 200) {
+		await response.body?.cancel();
 		throw new Error(
-			`Couldn't load InflightInternet. Request failed with status ${request.statusText} (${request.status})`,
+			`Couldn't load InflightInternet. Request failed with status ${response.statusText} (${response.status})`,
 		);
 	}
 
-	const response = (await request.json()) as Root;
+	const body = (await response.json()) as Root;
 
-	const departureTime = dayjs(response.Response.flightInfo.departureTime).toDate().getTime();
-	const expectedArrivalTime = dayjs(response.Response.flightInfo.expectedArrival).toDate().getTime();
+	const departureTime = dayjs(body.Response.flightInfo.departureTime).toDate().getTime();
+	const expectedArrivalTime = dayjs(body.Response.flightInfo.expectedArrival).toDate().getTime();
 
 	return {
-		number: response.Response.flightInfo.flightNumberInfo,
+		number: body.Response.flightInfo.flightNumberInfo,
 		completedPercent: percentageBetweenTimestamps(departureTime, expectedArrivalTime),
-		expectedArrival: response.Response.flightInfo.expectedArrival,
-		milesRemaining: response.Response.flightInfoFIG2?.flight.gps.calculations.distance_to_arrival ?? null,
+		expectedArrival: body.Response.flightInfo.expectedArrival,
+		milesRemaining: body.Response.flightInfoFIG2?.flight.gps.calculations.distance_to_arrival ?? null,
 
 		destination: {
 			airport: {
-				code: response.Response.flightInfo.destinationAirportCodeIata,
+				code: body.Response.flightInfo.destinationAirportCodeIata,
 			},
-			timezoneDelta: response.Response.flightInfo.destinationTimeZoneOffset,
+			timezoneDelta: body.Response.flightInfo.destinationTimeZoneOffset,
 		},
 
 		origin: {
 			airport: {
-				code: response.Response.flightInfo.departureAirportCodeIata,
+				code: body.Response.flightInfo.departureAirportCodeIata,
 			},
 		},
 
 		aircraft: {
-			tailNumber: response.Response.flightInfo.tailNumber,
-			model: response.Response.flightInfoFIG2
-				? response.Response.flightInfoFIG2.aircraft.attributes.manufacturer +
-				  response.Response.flightInfoFIG2.aircraft.attributes.make
+			tailNumber: body.Response.flightInfo.tailNumber,
+			model: body.Response.flightInfoFIG2
+				? body.Response.flightInfoFIG2.aircraft.attributes.manufacturer +
+				  body.Response.flightInfoFIG2.aircraft.attributes.make
 				: null,
+			doorsOpen: null,
 		},
 
 		stats: {
-			groundSpeed: response.Response.flightInfo.hspeed,
-			verticalSpeed: response.Response.flightInfo.vspeed,
-			altitude: response.Response.flightInfo.altitude,
-			seatCount: response.Response.flightInfoFIG2?.aircraft.seat_count ?? null,
+			groundSpeed: body.Response.flightInfo.hspeed,
+			verticalSpeed: body.Response.flightInfo.vspeed,
+			altitude: body.Response.flightInfo.altitude,
+			seatCount: body.Response.flightInfoFIG2?.aircraft.seat_count ?? null,
 		},
 	};
 };

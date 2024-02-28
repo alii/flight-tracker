@@ -35,7 +35,7 @@ export interface Flight {
 		/**
 		 * How far ahead or behind the timezone at the destination is
 		 */
-		timezoneDelta: number;
+		timezoneDelta: number | null;
 	};
 
 	/**
@@ -51,6 +51,12 @@ export interface Flight {
 		 * The model name. For example "Boeing 747"
 		 */
 		model: string | null;
+
+		/**
+		 * If the doors are open on the aircraft. Hopefully this is never true during the flight.
+		 * Some providers will give this! Lol
+		 */
+		doorsOpen: boolean | null;
 	};
 
 	/**
@@ -60,12 +66,12 @@ export interface Flight {
 		/**
 		 * The ground speed we are travelling at in MPH
 		 */
-		groundSpeed: number;
+		groundSpeed: number | null;
 
 		/**
 		 * The speed of which we are ascending or descending at in MPH
 		 */
-		verticalSpeed: number;
+		verticalSpeed: number | null;
 
 		/**
 		 * The altitude in feet

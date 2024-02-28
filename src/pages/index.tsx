@@ -49,15 +49,15 @@ export default function FlightTracker(props: Props) {
 					<div className="flex items-center space-x-2">
 						<h1 className="text-4xl font-bold relative">Flight Tracker</h1>
 
-						<div className="mt-1">
-							<span className="select-none animate-pulse bg-red-300 text-red-600 border-red-600 dark:bg-red-500 dark:text-red-900 dark:border-red-900 font-bold tracking-wide uppercase px-2 py-0.5 rounded-full border-4">
+						<div className="mt-1.5">
+							<span className="select-none text-sm animate-pulse bg-red-300 text-red-600 border-red-600 dark:bg-red-500 dark:text-red-900 dark:border-red-900 font-bold tracking-wide uppercase px-2 py-0.5 rounded-full border-4">
 								Live
 							</span>
 						</div>
 					</div>
 
 					<p className="text-gray-500 dark:text-gray-400">
-						You are currently on flight <span className="text-gray-700 dark:text-gray-300">{flight.number}</span> from{' '}
+						You are on flight <span className="text-gray-700 dark:text-gray-300">{flight.number}</span> from{' '}
 						<span className="text-gray-700 dark:text-gray-300">{flight.origin.airport.code}</span> to{' '}
 						<span className="text-gray-700 dark:text-gray-300">{flight.destination.airport.code}</span>
 					</p>
@@ -69,18 +69,25 @@ export default function FlightTracker(props: Props) {
 					{flight.milesRemaining && (
 						<Card title="Miles Remaining">{numberFormat.format(Math.floor(flight.milesRemaining))}</Card>
 					)}
-					<Card title="Ground Speed">{Math.floor(flight.stats.groundSpeed)} mph</Card>
-					<Card title="Ascending" subtext={`Vertical speed: ${flight.stats.verticalSpeed.toPrecision(3)} mph`}>
-						{flight.stats.verticalSpeed > 0 ? 'Yes' : 'No'}
-					</Card>
+					{flight.stats.groundSpeed && <Card title="Ground Speed">{Math.floor(flight.stats.groundSpeed)} mph</Card>}
+					{flight.stats.verticalSpeed && (
+						<Card title="Ascending" subtext={`Vertical speed: ${flight.stats.verticalSpeed.toPrecision(3)} mph`}>
+							{flight.stats.verticalSpeed > 0 ? 'Yes' : 'No'}
+						</Card>
+					)}
 					<Card title="Landing in" subtext={dayjs(flight.expectedArrival).toDate().toLocaleString()}>
 						~{dayjs(flight.expectedArrival).fromNow(true)}
 					</Card>
 					<Card title="Altitude">{numberFormat.format(Math.floor(flight.stats.altitude))} ft</Card>
 					{flight.aircraft.model && <Card title="Aircraft Model">{flight.aircraft.model}</Card>}
 					<Card title="Tail Number">{flight.aircraft.tailNumber}</Card>
-					<Card title="Timezone Delta">{flight.destination.timezoneDelta} Hours</Card>
+					{flight.destination.timezoneDelta && (
+						<Card title="Timezone Delta">{flight.destination.timezoneDelta} Hours</Card>
+					)}
 					{flight.stats.seatCount && <Card title="Seats on Aircraft">{flight.stats.seatCount} Seats</Card>}
+					{flight.aircraft.doorsOpen !== null && (
+						<Card title="Doors are open?">{flight.aircraft.doorsOpen ? 'Yes' : 'No (hopefully)'}</Card>
+					)}
 				</div>
 			</main>
 		</div>
