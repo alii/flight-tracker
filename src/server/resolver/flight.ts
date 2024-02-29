@@ -84,4 +84,5 @@ export interface Flight {
 
 export interface Airport {
 	code: string;
+	name?: string;
 }

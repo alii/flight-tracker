@@ -44,7 +44,6 @@ export default function FlightTracker(props: Props) {
 						</div>
 					</div>
 				</div>
-
 				<div className="space-y-2">
 					<div className="flex items-center space-x-2">
 						<h1 className="text-4xl font-bold relative">Flight Tracker</h1>
@@ -62,22 +61,25 @@ export default function FlightTracker(props: Props) {
 						<span className="text-gray-700 dark:text-gray-300">{flight.destination.airport.code}</span>
 					</p>
 				</div>
-
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-					<Card title="Destination">{flight.destination.airport.code}</Card>
-					<Card title="Origin">{flight.origin.airport.code}</Card>
+					<Card title="Destination" subtext={flight.destination.airport.name}>
+						{flight.destination.airport.code}
+					</Card>
+					<Card title="Origin" subtext={flight.origin.airport.name}>
+						{flight.origin.airport.code}
+					</Card>
+					<Card title="Landing in" subtext={dayjs(flight.expectedArrival).toDate().toLocaleString()}>
+						~{dayjs(flight.expectedArrival).fromNow(true)}
+					</Card>
 					{flight.milesRemaining && (
 						<Card title="Miles Remaining">{numberFormat.format(Math.floor(flight.milesRemaining))}</Card>
 					)}
 					{flight.stats.groundSpeed && <Card title="Ground Speed">{Math.floor(flight.stats.groundSpeed)} mph</Card>}
-					{flight.stats.verticalSpeed && (
+					{flight.stats.verticalSpeed !== null && (
 						<Card title="Ascending" subtext={`Vertical speed: ${flight.stats.verticalSpeed.toPrecision(3)} mph`}>
 							{flight.stats.verticalSpeed > 0 ? 'Yes' : 'No'}
 						</Card>
 					)}
-					<Card title="Landing in" subtext={dayjs(flight.expectedArrival).toDate().toLocaleString()}>
-						~{dayjs(flight.expectedArrival).fromNow(true)}
-					</Card>
 					<Card title="Altitude">{numberFormat.format(Math.floor(flight.stats.altitude))} ft</Card>
 					{flight.aircraft.model && <Card title="Aircraft Model">{flight.aircraft.model}</Card>}
 					<Card title="Tail Number">{flight.aircraft.tailNumber}</Card>
