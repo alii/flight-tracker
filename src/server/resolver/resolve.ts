@@ -1,6 +1,7 @@
 import {api} from '../api';
 import {Flight} from './flight';
-import {iberiaInternet, inflightInternet} from './resolvers';
+import {iberiaInternet} from './resolvers/iberia-internet';
+import {inflightInternet} from './resolvers/inflight-internet';
 import {virginAtlanticViasat} from './resolvers/virgin-atlantic-viasat';
 
 const resolve = () => [inflightInternet(), iberiaInternet(), virginAtlanticViasat()];
